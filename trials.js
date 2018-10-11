@@ -19,11 +19,11 @@ const interests = [
   'staring at human food'
 ];
 
-function showLikes(likes) {
+function showInterests(likes) {
 	console.log('THINGS I LIKE: ');
 
 	for (let like of likes) {
-		console.log(like);
+		console.log(`  ${like}`);
 	}
 }
 
@@ -39,7 +39,7 @@ function showFavorites(favList) {
 	console.log('FAVORITES:');
 
 	for (let [item, favorite] of Object.entries(favList)) {
-		console.log(`${item}:  ${favorite}`);
+		console.log(`  ${item}: ${favorite}`);
 	}
 }
 
@@ -108,25 +108,81 @@ function showAcctActivity(current, history) {
 /////////////////////////////////////////////////////////
 // Creating a User Object
 
-// Add user object
+const melon = {
+	name: 'melonie', 
+	catchphrase: 'mel mel mel',
+	location: 'oakland',
+	interests: interests,
+	favorites: favorites,
+	transactions: transactions,
+	startingMeloncoinBalance: 1
+}
 
 // Add function to print user dashboard
 
+function showDashboard(melonData) {
 
+	showProfile(melonData.name, melonData.catchphrase, melonData.location);
+	showInterests(melonData.interests);
+	showFavorites(melonData.favorites);
+	showAcctActivity(melonData.startingMeloncoinBalance, melonData.transactions);
+}
 
 /////////////////////////////////////////////////////////
 // PART 3
 
 // Add object that keeps track of premium members
+const premiumMembers = {
 
+	nelom : {
+		email: 'nel@om.me',
+		tier: 'gold'},
+	shell : {
+		email: 'sh@ell.by',
+		tier: 'gold'},
+	nardog : {
+		email: 'nardog@sing.er',
+		tier: 'silver'}
+	}
 // Add function to return emails of premium members
 
+function getPremiumEmails(memberList) {
+
+	const emailList = [];
+	for (let [name, info] of Object.entries(memberList)) {
+		// console.log(`User: ${name}\nEmail: ${info.email}`);
+		emailList.push(info.email);
+	}
+	return emailList;
+}
 
 
 /////////////////////////////////////////////////////////
 // PART 4
 
-// Add function to assign interns to workdays
+const fakeInternList = ['Kara', 'Sun-Ah', 'Kristi', 'Jo', 'Elle', 'Priyanka'];
+const daysOfWeek = ['Sunday', 
+					'Monday',
+					'Tuesday',
+					'Wednesday',
+					'Thursday',
+					'Friday',
+					'Saturday'];
 
+// Add function to assign interns to workdays
+function getRandomIntern(internList) {
+	const min = 0;
+	const max = internList.length;
+	return internList[Math.floor(Math.random() * max)];
+}
+
+function getInternSchedule(internList) {
+
+	console.log('\n ------------SCHEDULE------------\n');
+	daysOfWeek.forEach(function(day) {
+		console.log(`${day}: ${getRandomIntern(internList)}`);
+	});
+
+}
 // Add a function to generate customer support hours
 
