@@ -19,19 +19,29 @@ const interests = [
   'staring at human food'
 ];
 
-// Add function to print interests
+function showLikes(likes) {
+	console.log('THINGS I LIKE: ');
 
-
+	for (let like of likes) {
+		console.log(like);
+	}
+}
 
 /////////////////////////////////////////////////////////
 // Display Favorites
 const favorites = {
-  // Add more favorites
+  'food': 'pebbles',
+  'tree': 'palm',
+  'quote': 'Bock bock bock'
 };
 
-// Add function to print favorites
+function showFavorites(favList) {
+	console.log('FAVORITES:');
 
-
+	for (let [item, favorite] of Object.entries(favList)) {
+		console.log(`${item}:  ${favorite}`);
+	}
+}
 
 /////////////////////////////////////////////////////////
 // PART 2
@@ -39,30 +49,59 @@ const favorites = {
 /////////////////////////////////////////////////////////
 // Add Transactions
 
-// Add function to add transaction
+const transactions = {};
 
-// Create object to hold transactions
+function addTransaction(date, amount, object) {
 
-// Add transactions to object
-
+  object[date] = amount;
+  return object;
+}
 
 /////////////////////////////////////////////////////////
 // Get Balance Status
 
-// Add function to calculate balance status
+function getBalanceStatus(balance) {
+
+	if (balance < 0) {
+		return 'YOU ARE OVERDRAWN';
+	}
+	else if (balance < 20) {
+		return 'Warning! Your balance is almost 0!';
+	}
+	else if (balance >= 20) 
+		return 'Normal';
+}
 
 
 
 /////////////////////////////////////////////////////////
 // Calculate Current Balance
 
-// Add function to calculate and return current balance
+function getCurrentBalance(current, nextTransaction) {
+
+	for (let value of Object.values(nextTransaction)) {
+		current += value;
+		if (current < 0) {
+			current -= 25;
+		}
+	}
+
+	return current;
+}
 
 
 /////////////////////////////////////////////////////////
 // Show Account Activity
 
-// Add function to print account activity
+function showAcctActivity(current, history) {
+	console.log('TRANSACTIONS:')
+	for (let [date, amount] of Object.entries(history)) {
+		console.log(`  ${date}: ${amount}`);
+		}
+	console.log(`CURRENT BALANCE: ${current}`);
+	console.log(`CURRENT STATUS: ${getBalanceStatus(current)}`)
+
+}
 
 
 
